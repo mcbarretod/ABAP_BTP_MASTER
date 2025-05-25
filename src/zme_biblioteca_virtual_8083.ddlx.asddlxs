@@ -1,0 +1,94 @@
+@Metadata.layer: #CORE
+@UI.headerInfo:  {
+
+    typeName: 'Libro',
+    typeNamePlural: 'Libros',
+    typeImageUrl: '',
+    imageUrl: 'Imagen',
+    
+    title: {
+        type: #STANDARD,
+        criticalityRepresentation: #WITHOUT_ICON,
+        value: 'Titulo'
+            },
+    
+    description: {
+        type: #STANDARD,
+        criticalityRepresentation: #WITHOUT_ICON,
+        value: 'Autor'
+                  }
+    }
+@Search.searchable: true
+annotate entity ZCDS_BIBLIOTECA_VIRTUAL_8083
+    with 
+{
+  @UI.facet: [
+    { id: 'DetallesLibro',
+      label: 'Detalles del Libro',
+      type: #COLLECTION,
+      position: 10 },
+    
+    { id: 'Vehiculo',
+      parentId: 'DetallesLibro',
+      label: 'Detalles',
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'DetallesLibro',
+      position: 10 },
+    
+    { id: 'Cliente',
+      label: 'Clientes',
+      type: #LINEITEM_REFERENCE,
+      targetElement: '_Clientes',
+      position: 20 }
+  ]
+    
+  @UI: { 
+    lineItem: [ { position: 10, importance: #HIGH }],
+    selectionField: [{ position: 10 } ]
+       }   
+    Titulo;
+    
+    
+  @UI.lineItem: [{ position: 20, importance: #HIGH }]
+    Autor;
+    
+  @UI: { 
+    lineItem: [ { position: 30, importance: #HIGH }],
+    selectionField: [{ position: 20 } ]
+       }  
+  @Consumption.valueHelpDefinition: [ { entity: { name: 'zcds_catego_8083', element: 'Categoria'} } ]
+    Categoria;
+    
+  @UI.lineItem: [ { position: 40, importance: #HIGH } ]
+  @Search: { defaultSearchElement: true, ranking: #HIGH, fuzzinessThreshold: 0.8 }
+    Editorial;
+    
+  @UI.lineItem: [{ position: 50, importance: #HIGH }]
+    Idioma;
+    
+  @UI.lineItem: [{ position: 60, importance: #HIGH }]
+    Precio;
+    
+  @UI.lineItem: [{ position: 70, importance: #HIGH}]
+    Moneda;
+    
+  @UI.lineItem: [{ position: 80, importance: #LOW , criticality: 'CantVentas'}]
+    Ventas;
+    
+    
+  @UI.fieldGroup: [ { qualifier: 'DetallesLibro', position: 10 } ]
+    IdLibro;
+    
+  @UI.fieldGroup: [ { qualifier: 'DetallesLibro', position: 20, label: 'Categoría' } ]
+    Descripcion;
+    
+  @UI.fieldGroup: [ { qualifier: 'DetallesLibro', position: 30 } ]
+    Paginas;
+    
+  @UI.fieldGroup: [ { qualifier: 'DetallesLibro', position: 40 } ]
+    Formato;
+    
+  @UI.fieldGroup: [ { qualifier: 'DetallesLibro', position: 50 } ]
+    TipoAcceso;
+    
+}

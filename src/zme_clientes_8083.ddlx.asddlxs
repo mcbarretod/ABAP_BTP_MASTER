@@ -1,0 +1,50 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo: {
+    typeName: 'Cliente',
+    typeNamePlural: 'Libros',
+    imageUrl: 'Url',
+    title: {
+        type: #STANDARD,
+        value: 'NombreCompleto'
+    },
+    
+    description: {
+        type: #STANDARD,
+        value: 'IdCliente'
+    }
+}
+annotate entity ZCDS_CLNTS_LIB_8083 with
+{
+
+  @UI.facet: [
+    { id: 'DetallesCliente',
+      label: 'Detalles del Client',
+      type: #COLLECTION,
+      position: 10 },
+
+    { id: 'Client',
+      parentId: 'DetallesCliente',
+      label: 'Detalles',
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'DetallesCliente',
+      position: 10 }
+
+  ]
+
+  @UI.lineItem: [ { position: 10, importance: #HIGH }]
+  IdCliente;
+
+  @UI.lineItem: [{ position: 20, importance: #HIGH }]
+  Nombre;
+
+  @UI.lineItem: [{ position: 30, importance: #HIGH }]
+  Apellidos;
+
+  @UI.fieldGroup: [{ qualifier: 'DetallesCliente', position: 10 }]
+  TipoAcceso;
+
+  @UI. fieldGroup: [{ qualifier: 'DetallesCliente', position: 20 }]
+  Email;
+
+}

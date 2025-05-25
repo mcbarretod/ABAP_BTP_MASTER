@@ -1,0 +1,5 @@
+@EndUserText.label: 'Biblioteca virtual'
+define service ZSD_LIBROS_8083 {
+  expose ZCDS_BIBLIOTECA_VIRTUAL_8083 as Libros;
+  expose ZCDS_CLNTS_LIB_8083          as DetalleClientes;
+}
